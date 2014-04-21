@@ -21,18 +21,23 @@
 					<li><a href="/register">Register</a></li>
 				</c:otherwise>
 			</c:choose>
-
+			<c:if test="${functions:isLoggedIn() }">
+				<li>
+					<a>
+						User : ${functions:getCurrentUsername() }
+					</a>
+				</li>
+			</c:if> 
 
 		</ul>
 
 		<div class="nav navbar-form navbar-right">
-			<c:if test="${functions:isLoggedIn() }">
-				<h5 class="text-info">User : ${functions:getCurrentUsername() }</h5>
-			</c:if>
-				<ul class="pager" style="margin-top: 0px; margin-bottom: 1px">
-					<li><a href="/?page=${page <= 0 ? 0 : page-1 }">Previous</a></li>
-					<li><a href="/?page=${messages.size() == 0 ? page : page+1 }">Next</a></li>
-				</ul>
+
+			<ul class="pager" style="margin-top: 0px; margin-bottom: 1px">
+				<li class="${page <=0 ? 'disabled' : '' }"><a href="/?page=${page-1}">Previous</a></li>
+				<li class="${messages.size() < 7 ? 'disabled' : '' }"><a href="/?page=${page+1}">Next</a></li>
+			</ul>
+
 		</div>
 
 	</div>

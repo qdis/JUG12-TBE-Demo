@@ -2,23 +2,4 @@ insert into user(username,password,role) values ('TimoB','c6f81aa4457266a65463c9
 
 insert into message(value,date,user_id) values('Hello World',now(),1)
 
-insert into message(value,date,user_id) values('Hello World',now(),1)
 
-insert into message(value,date,user_id) values('Hello World',now(),1)
-
-insert into message(value,date,user_id) values('Hello World',now(),1)
-
-insert into message(value,date,user_id) values('Hello World',now(),1)
-
-insert into message(value,date,user_id) values('Hello World',now(),1)
-
-insert into message(value,date,user_id) values('Hello World',now(),1)
-
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
-
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
-insert into message(value,date,user_id) values('Hello To you aswell!',now(),1)
