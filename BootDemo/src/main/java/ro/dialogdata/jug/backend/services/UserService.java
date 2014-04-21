@@ -13,13 +13,18 @@ import ro.dialogdata.jug.backend.repos.UserRepository;
 import ro.dialogdata.jug.common.enums.Authorities;
 import ro.dialogdata.jug.common.model.User;
 
+/**
+ * UserService implementing UserDetailsService ( required interface for Spring Security )
+ */
 @Service
-
 public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * Looks up User using userRepository and creates a UserDetails Object 
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {

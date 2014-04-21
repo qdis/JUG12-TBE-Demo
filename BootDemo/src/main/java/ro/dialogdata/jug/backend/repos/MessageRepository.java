@@ -8,6 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import ro.dialogdata.jug.common.model.Message;
 
+/**
+ * Simple message Repository
+ *
+ */
 public interface MessageRepository extends CrudRepository<Message, Long>{
 
 	@Query("select m from Message m order by m.date desc")
