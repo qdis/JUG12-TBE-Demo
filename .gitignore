@@ -1,7 +1,7 @@
-.DS_STORE
-.classpath
-.project
-.settings
-.settings/
-.springBeans
-.target/
+*.DS_STORE
+*.classpath
+*.project
+*.settings
+*.settings/
+*.springBeans
+*.target/
