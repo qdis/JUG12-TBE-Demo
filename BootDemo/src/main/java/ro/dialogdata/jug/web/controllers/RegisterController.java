@@ -3,6 +3,7 @@ package ro.dialogdata.jug.web.controllers;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -45,6 +46,7 @@ public class RegisterController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String register(User user,ServletRequest servletRequest) {
 		user.setRole(Role.USER);
+		user.setUsername(StringEscapeUtils.escapeHtml(user.getUsername()));
 		userRepository.save(user);
 		authenticateForce(user, ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest());
 		return "redirect:/";

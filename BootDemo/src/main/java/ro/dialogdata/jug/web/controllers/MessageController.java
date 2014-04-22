@@ -3,6 +3,7 @@ package ro.dialogdata.jug.web.controllers;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -76,6 +77,7 @@ public class MessageController {
 			message.setUser(userRepository
 					.findByUsernameIgnoreCase(AuthenticationUtils
 							.getCurrentUsername()));
+			message.setValue(StringEscapeUtils.escapeHtml(message.getValue()));
 			messageRepository.save(message);
 		}
 		initModel(model, page);
