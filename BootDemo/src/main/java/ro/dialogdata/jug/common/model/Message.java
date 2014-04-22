@@ -22,6 +22,17 @@ public class Message extends AbstractEntity {
 
 	@ManyToOne
 	private User user;
+	
+	public Message(){
+		super();
+	}
+
+	public Message(String value, Date date, User user) {
+		super();
+		this.value = value;
+		this.date = date;
+		this.user = user;
+	}
 
 	public String getValue() {
 		return value;
@@ -46,7 +57,6 @@ public class Message extends AbstractEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 	@Override
 	public String toString() {

@@ -1,7 +1,9 @@
 package ro.dialogdata.jug;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -19,7 +21,12 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import ro.dialogdata.jug.backend.repos.MessageRepository;
+import ro.dialogdata.jug.backend.repos.UserRepository;
 import ro.dialogdata.jug.backend.services.UserService;
+import ro.dialogdata.jug.common.enums.Role;
+import ro.dialogdata.jug.common.model.Message;
+import ro.dialogdata.jug.common.model.User;
 
 @ComponentScan
 @Configuration
@@ -50,9 +57,26 @@ public class Application extends WebMvcConfigurerAdapter {
 		return new ApplicationSecurity();
 	}
 
+	@Bean
+	public InitializingBean populateTestData(final UserRepository userRepo,
+			final MessageRepository messageRepo) {
+		InitializingBean bean = new InitializingBean() {
+
+			@Override
+			public void afterPropertiesSet() throws Exception {
+				User jug = userRepo.save(new User("JUG",
+						"c6f81aa4457266a65463c97406f59c8b81e8d7de", Role.USER));
+				messageRepo.save(new Message("Greetings from TM JUG",
+						new Date(), jug));
+
+			}
+		};
+		return bean;
+	}
+
 	/**
-	 * Simple Encoding Filter Example ( Alternative to web.xml )
-	 * Default url pattern is : /*
+	 * Simple Encoding Filter Example ( Alternative to web.xml ) Default url
+	 * pattern is : /*
 	 */
 	@Bean
 	public CharacterEncodingFilter characterEncodingFilter() {
@@ -63,7 +87,9 @@ public class Application extends WebMvcConfigurerAdapter {
 	}
 
 	/**
-	 * Character Encoding Filter Example with Filter Registration ( specific URL Patterns )
+	 * Character Encoding Filter Example with Filter Registration ( specific URL
+	 * Patterns )
+	 * 
 	 * @return
 	 */
 	@Bean
@@ -103,7 +129,8 @@ public class Application extends WebMvcConfigurerAdapter {
 		}
 
 		/**
-		 * AuthenticationManager configuration -> this tells the authManager to use the custom userService
+		 * AuthenticationManager configuration -> this tells the authManager to
+		 * use the custom userService
 		 */
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth)
